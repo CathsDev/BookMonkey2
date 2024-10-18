@@ -1,0 +1,19 @@
+<h1>Books</h1>
+<ul class="book-list">
+    <li *ngFor="let book of books">
+        <div class="list-item">
+            <img *ngIf="book.thumbnailUrl" [src]="book.thumbnailUrl" alt="Cover">
+            <h2>{{ book.title }}</h2>
+            <p role="doc-subtitle" *ngIf="book.subtitle">{{ book.subtitle }}</p>
+            <ul class="comma-list">
+                <li *ngFor="let author of book.authors">
+                    {{ author }}
+                </li>
+            </ul>
+            <div>ISBN {{ book.isbn }}</div>
+        </div>
+    </li>
+    <li *ngIf="!books.length">
+        No books available.
+    </li>
+</ul>
