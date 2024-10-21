@@ -1,17 +1,22 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component } from '@angular/core';
 import { Book } from '../../shared/book';
+import { ActivatedRoute } from '@angular/router';
+import { BookStoreService } from '../../shared/book-store.service';
 
 @Component({
-  selector: 'bm-book-details',
-  templateUrl: './book-details.component.html',
-  styleUrl: './book-details.component.css'
+    selector: 'bm-book-details',
+    templateUrl: './book-details.component.html',
+    styleUrl: './book-details.component.css'
 })
 export class BookDetailsComponent {
-    @Input() book?: Book;
-    @Output() leave = new EventEmitter<void>();
+    book?: Book;
 
-    doLeave() {
-        this.leave.emit();
+    constructor(
+        private service: BookStoreService,
+        private route: ActivatedRoute,
+    ) {
+        const isbn = this.route.snapshot.paramMap.get('isbn')!;
+        this.book = this.service.getSingle(isbn);
     }
 
 }
