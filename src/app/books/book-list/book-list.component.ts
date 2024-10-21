@@ -11,7 +11,9 @@ export class BookListComponent {
     books: Book[] = [];
 
     constructor(private booksService: BookStoreService) {
-        this.books = this.booksService.getAll();
+        this.booksService.getAll().subscribe(books => {
+            this.books = books;
+        });
     }
 
 }
