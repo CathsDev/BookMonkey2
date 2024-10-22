@@ -1,4 +1,4 @@
-<div class="details" *ngIf="book">
+<div class="details" *ngIf="book$ | async as book">
     <h1>{{ book.title }}</h1>
     <p role="doc-subtitle" *ngIf="book.subtitle">{{ book.subtitle }}</p>
     <div class="header">
