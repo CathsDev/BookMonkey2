@@ -1,0 +1,23 @@
+<form (ngSubmit)="submitForm()" #form="ngForm">
+    <label for="title">Titel</label>
+    <input name="title"
+           id="title"
+           [(ngModel)]="book.title"
+           required
+    >
+    <label for="isbn">ISBN</label>
+    <input name="isbn"
+           id="isbn"
+           [(ngModel)]="book.isbn"
+           required
+           minlength="10"
+           maxlength="13"
+    >
+    <label for="author">Autoren</label>
+    <input name="author"
+           id="author"
+           [(ngModel)]="book.authors[0]"
+           required
+    >
+    <button type="submit" [disabled]="form.invalid">Sichern</button>
+</form>

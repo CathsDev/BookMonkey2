@@ -8,6 +8,7 @@ import { AppComponent } from './app.component';
 import { BooksModule } from './books/books.module';
 import { HomeComponent } from './home/home.component';
 import { SearchComponent } from './search/search.component';
+import { AdminModule } from './admin/admin.module';
 
 @NgModule({
     declarations: [
@@ -20,6 +21,7 @@ import { SearchComponent } from './search/search.component';
         HttpClientModule,
         AppRoutingModule,
         BooksModule,
+        AdminModule,
     ],
     providers: [
         {
