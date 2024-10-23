@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { AuthService } from './shared/auth.service';
 
 @Component({
     selector: 'bm-root',
@@ -6,5 +7,8 @@ import { Component } from '@angular/core';
     styleUrl: './app.component.css'
 })
 export class AppComponent {
+
+    constructor(public auth: AuthService) {
+    }
 
 }
