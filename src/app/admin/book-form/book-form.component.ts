@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import {Component, EventEmitter, Input, OnChanges, Output, SimpleChanges} from '@angular/core';
 import { Book } from '../../shared/book';
 import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
 
@@ -7,8 +7,8 @@ import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
     templateUrl: './book-form.component.html',
     styleUrl: './book-form.component.css'
 })
-export class BookFormComponent {
-
+export class BookFormComponent implements OnChanges {
+    @Input() book?: Book;
     @Output() submitBook = new EventEmitter<Book>();
 
     form = new FormGroup({
@@ -57,6 +57,23 @@ export class BookFormComponent {
         );
     }
 
+    private setFormValues(book: Book) {
+        this.form.patchValue(book);
+        this.form.setControl(
+            'authors',
+            this.buildAuthorsArray(book.authors)
+        );
+    }
+
+    private setEditMode(isEditing: boolean) {
+        const isbnControl = this.form.controls.isbn;
+        if (isEditing) {
+            isbnControl.disable();
+        } else {
+            isbnControl.enable();
+        }
+    }
+
     submitForm() {
         const formValue = this.form.getRawValue();
         const authors = formValue.authors.filter(author => !!author);
@@ -65,6 +82,15 @@ export class BookFormComponent {
             authors
         };
         this.submitBook.emit(newBook);
+    }
+
+    ngOnChanges(): void {
+        if (this.book) {
+            this.setFormValues(this.book);
+            this.setEditMode(true);
+        } else {
+            this.setEditMode(false);
+        }
     }
 
 }
