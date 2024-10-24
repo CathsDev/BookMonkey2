@@ -22,4 +22,8 @@
     <img *ngIf="book.thumbnailUrl" [src]="book.thumbnailUrl" alt="Cover">
     <a class="button" routerLink="..">Zurück zur Bücherliste</a>
     <button class="red" (click)="removeBook(book.isbn)">Buch löschen</button>
+    <a class="button"
+       [routerLink]="['/admin/edit', book.isbn]">
+        Buch bearbeiten
+    </a>
 </div>

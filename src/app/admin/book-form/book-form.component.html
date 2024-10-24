@@ -1,23 +1,45 @@
-<form (ngSubmit)="submitForm()" #form="ngForm">
+<form [formGroup]="form" (ngSubmit)="submitForm()">
+
     <label for="title">Titel</label>
-    <input name="title"
-           id="title"
-           [(ngModel)]="book.title"
-           required
-    >
+    <input formControlName="title"
+           id="title">
+
+    <label for="subtitle">Untertitel</label>
+    <input formControlName="subtitle"
+           id="subtitle">
+
     <label for="isbn">ISBN</label>
-    <input name="isbn"
-           id="isbn"
-           [(ngModel)]="book.isbn"
-           required
-           minlength="10"
-           maxlength="13"
-    >
-    <label for="author">Autoren</label>
-    <input name="author"
-           id="author"
-           [(ngModel)]="book.authors[0]"
-           required
-    >
-    <button type="submit" [disabled]="form.invalid">Sichern</button>
+    <input formControlName="isbn"
+           id="isbn">
+
+    <label>Authors</label>
+    <button type="button" class="add"
+            (click)="addAuthorControl()">
+        + Author
+    </button>
+    <fieldset formArrayName="authors">
+        <input
+                *ngFor="let a of authors.controls; index as i"
+                [attr.aria-label]="'Author ' + i"
+                [formControlName]="i">
+    </fieldset>
+
+    <label for="description">Beschreibung</label>
+    <textarea formControlName="description"
+              id="description"></textarea>
+
+    <label for="published">Veröffentlicht</label>
+    <input formControlName="published"
+           id="published"
+           type="date"
+           useValueAsLocalIs>
+
+    <label for="thumbnailUrl">Thumbnail Url</label>
+    <input formControlName="thumbnailUrl"
+           type="url"
+           id="thumbnailUrl">
+
+    <button type="submit" [disabled]="form.invalid">Speichern</button>
+
 </form>
+<pre>{{ form.value | json }}</pre>
