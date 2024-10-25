@@ -10,11 +10,11 @@
         </div>
         <div>
             <h2>ISBN</h2>
-            {{ book.isbn }}
+            {{ book.isbn | isbn }}
         </div>
         <div *ngIf="book.published">
             <h2>Published</h2>
-            {{ book.published }}
+            {{ book.published | date: 'longDate' }}
         </div>
     </div>
     <h2>Description</h2>
