@@ -6,15 +6,16 @@ import { BookEditComponent } from './book-edit/book-edit.component';
 
 const routes: Routes = [
     {
-        path: 'admin',
-        redirectTo: 'admin/create'
+        path: '',
+        redirectTo: 'create',
+        pathMatch: 'full'
     },
     {
-        path: 'admin/create',
+        path: 'create',
         component: BookCreateComponent
     },
     {
-        path: 'admin/edit/:isbn',
+        path: 'edit/:isbn',
         component: BookEditComponent
     }
 ];
