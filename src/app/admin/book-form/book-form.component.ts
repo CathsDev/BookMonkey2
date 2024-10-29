@@ -87,6 +87,25 @@ export class BookFormComponent implements OnChanges {
         this.submitBook.emit(newBook);
     }
 
+    errorsTranslated(controlName: string) {
+        const errorTexts: {
+            [controlName: string]: { [errorCode: string]: string }
+        } = {
+            title: {
+                required: $localize`:title required error@@BookFormComponentErrorTitleRequired:Title is required`
+            },
+            isbn: {
+                required: $localize`:isbn required error@@BookFormComponentErrorIsbnRequired:ISBN is required`,
+                isbnformat: $localize`:isbn format error@@BookFormComponentErrorIsbnFormat:ISBN must have 10 or 13 characters`,
+                isbnexists: $localize`:isbn exists error@@BookFormComponentErrorIsbnExists:ISBN already exists`,
+            },
+            authors: {
+                atleastonevalue: $localize`:at least one author error@@BookFormComponentErrorAtLeastOneAuthor:At least one author required`
+            }
+        }
+        return errorTexts[controlName] || {};
+    }
+
     ngOnChanges(): void {
         if (this.book) {
             this.setFormValues(this.book);

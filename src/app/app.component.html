@@ -1,16 +1,37 @@
 <nav>
-    <a routerLink="/home" routerLinkActive="active" ariaCurrentWhenActive="page">Home</a>
-    <a routerLink="/books" routerLinkActive="active" ariaCurrentWhenActive="page">Bücher</a>
-    <a routerLink="/admin" routerLinkActive="active" ariaCurrentWhenActive="page">Administration</a>
+    <a
+            routerLink="/home"
+            routerLinkActive="active"
+            ariaCurrentWhenActive="page"
+            i18n="nav home@@AppComponentHome"
+    >Home</a>
+    <a
+            routerLink="/books"
+            routerLinkActive="active"
+            ariaCurrentWhenActive="page"
+            i18n="nav books@@AppComponentBooks"
+    >Books</a>
+    <a
+            routerLink="/admin"
+            routerLinkActive="active"
+            ariaCurrentWhenActive="page"
+            i18n="nav admin@@AppComponentAdmin"
+    >Administration</a>
     <div class="actions">
         <button class="green"
                 (click)="auth.login()"
-                *ngIf="!auth.isAuthenticated">Login
+                *ngIf="!auth.isAuthenticated"
+                i18n="login@@AppComponentLogin"
+        >Login
         </button>
         <button class="red"
                 (click)="auth.logout()"
-                *ngIf="auth.isAuthenticated">Logout
+                *ngIf="auth.isAuthenticated"
+                i18n="logout@@AppComponentLogout"
+        >Logout
         </button>
+        <button (click)="changeLocale('de')">DE</button>
+        <button (click)="changeLocale('en')">EN</button>
     </div>
 </nav>
 <main>

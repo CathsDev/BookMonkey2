@@ -1,32 +1,39 @@
 <form [formGroup]="form" (ngSubmit)="submitForm()">
 
-    <label for="title">Titel</label>
+    <label
+            for="title"
+            i18n="label title|Label for the title input@@BookFormComponentLabelTitle"
+    >Titel</label>
     <input formControlName="title"
            id="title">
     <bm-form-errors
         controlName="title"
-        [messages]="{ required: 'Title is required' }">
+        [messages]="errorsTranslated('title')">
     </bm-form-errors>
 
-    <label for="subtitle">Untertitel</label>
+    <label
+            for="subtitle"
+            i18n="label subtitle|Label for the subtitle input@@BookFormComponentLabelSubtitle"
+    >Untertitel</label>
     <input formControlName="subtitle"
            id="subtitle">
 
-    <label for="isbn">ISBN</label>
+    <label
+            for="isbn"
+            i18n="label isbn|Label for the ISBN input@@BookFormComponentLabelIsbn"
+    >ISBN</label>
     <input formControlName="isbn"
            id="isbn">
     <bm-form-errors
             controlName="isbn"
-            [messages]="{
-                required: 'ISBN is required',
-                isbnformat: 'ISBN must have 10 or 13 chars',
-                isbnexists: 'ISBN already exists'
-             }">
+            [messages]="errorsTranslated('isbn')">
     </bm-form-errors>
 
-    <label>Authors</label>
+    <label i18n="label authors|Label for the authors inputs@@BookFormComponentLabelAuthors">Authors</label>
     <button type="button" class="add"
-            (click)="addAuthorControl()">
+            (click)="addAuthorControl()"
+            i18n="button add author|Text for the button to add an author input@@BookFormComponentAddAuthor"
+    >
         + Author
     </button>
     <fieldset formArrayName="authors">
@@ -37,25 +44,38 @@
     </fieldset>
     <bm-form-errors
             controlName="authors"
-            [messages]="{ atleastonevalue: 'At least one author required' }">
+            [messages]="errorsTranslated('authors')">
     </bm-form-errors>
 
-    <label for="description">Beschreibung</label>
+    <label
+            for="description"
+            i18n="label description|Label for the description text@@BookFormComponentLabelDescription"
+    >Beschreibung</label>
     <textarea formControlName="description"
               id="description"></textarea>
 
-    <label for="published">Veröffentlicht</label>
+    <label
+            for="published"
+            i18n="label published|Label for the published input@@BookFormComponentLabelPublished"
+    >Veröffentlicht</label>
     <input formControlName="published"
            id="published"
            type="date"
-           useValueAsLocalIs>
+           useValueAsLocalIso>
 
-    <label for="thumbnailUrl">Thumbnail Url</label>
+    <label
+            for="thumbnailUrl"
+            i18n="label thumbnail|Label for the thumbnail input@@BookFormComponentLabelThumbnail"
+    >Thumbnail Url</label>
     <input formControlName="thumbnailUrl"
            type="url"
            id="thumbnailUrl">
 
-    <button type="submit" [disabled]="form.invalid">Speichern</button>
+    <button
+            type="submit"
+            [disabled]="form.invalid"
+            i18n="button save|Text for save button@@BookFormComponentSave"
+    >Speichern</button>
 
 </form>
 <pre>{{ form.value | json }}</pre>

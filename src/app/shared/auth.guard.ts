@@ -13,7 +13,9 @@ export const authGuard: CanActivateFn = (route, state) => {
             if (isAuthenticated) {
                 return true;
             } else {
-                window.alert('Not logged in!');
+                const msg = $localize
+                `:alert message when not logged in@@AuthGuardAlert:Not logged in!!`;
+                window.alert(msg);
                 return router.parseUrl('/home');
             }
         })
