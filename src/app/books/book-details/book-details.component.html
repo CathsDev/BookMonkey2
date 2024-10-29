@@ -3,33 +3,45 @@
     <p role="doc-subtitle" *ngIf="book.subtitle">{{ book.subtitle }}</p>
     <div class="header">
         <div>
-            <h2>Authors</h2>
+            <h2 i18n="headline authors|Headline for the authors@@BookDetailsComponentAuthors">Authors</h2>
             <ul>
                 <li *ngFor="let author of book.authors">{{ author }}</li>
             </ul>
         </div>
         <div>
-            <h2>ISBN</h2>
+            <h2 i18n="headline ISBN|Headline for the ISBN@@BookDetailsComponentIsbn">ISBN</h2>
             {{ book.isbn | isbn }}
         </div>
         <div *ngIf="book.published">
-            <h2>Published</h2>
+            <h2 i18n="headline published|Headline for the published date@@BookDetailsComponentPublished">Published</h2>
             {{ book.published | date: 'longDate':'+0200':'de' }}
         </div>
     </div>
-    <h2>Description</h2>
+    <h2 i18n="headline description|Headline for the description@@BookDetailsComponentDescription">Description</h2>
     <p>{{ book.description }}</p>
-    <img *ngIf="book.thumbnailUrl" [src]="book.thumbnailUrl" alt="Cover">
-    <a class="button" routerLink="..">Zurück zur Bücherliste</a>
+    <img
+            *ngIf="book.thumbnailUrl"
+            [src]="book.thumbnailUrl"
+            alt="Cover"
+            i18n-alt="cover alt text|Alternative text when no cover is defined@@BookDetailsComponentAltCover"
+    >
+    <a
+            class="button arrow-left"
+            routerLink=".."
+            i18n="link back|Link for navigation back to the books list@@BookDetailsComponentBackToList"
+    >Back to list</a>
     <ng-container *bmLoggedinOnly>
         <button
                 class="red"
-                bmConfirm="Buch löschen?"
+                bmConfirm="Remove book?"
                 (confirm)="removeBook(book.isbn)"
-        >Buch löschen</button>
+                i18n="button remove|Button text to remove a book@@BookDetailsComponentRemove"
+        >Remove book</button>
         <a class="button"
-           [routerLink]="['/admin/edit', book.isbn]">
-            Buch bearbeiten
+           [routerLink]="['/admin/edit', book.isbn]"
+           i18n="button edit|Button text to edit a book@@BookDetailsComponentEdit"
+        >
+            Edit book
         </a>
     </ng-container>
 </div>

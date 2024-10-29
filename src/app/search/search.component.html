@@ -1,6 +1,7 @@
 <input type="search"
        autocomplete="off"
-       aria-label="Suche"
+       aria-label="Search"
+       i18n-aria-label="search input ARIA label|input search@@SearchComponentInput"
        [class.loading]="isLoading"
        #searchInput
        (input)="input$.next(searchInput.value)"

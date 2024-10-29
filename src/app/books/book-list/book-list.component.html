@@ -1,9 +1,9 @@
-<h1>Bücher</h1>
+<h1 i18n="title books|Title for the books page@@BookListComponentTitle">Books</h1>
 <ul class="book-list" *ngIf="books$ | async as books">
     <li *ngFor="let book of books">
         <bm-book-list-item [book]="book"></bm-book-list-item>
     </li>
-    <li *ngIf="!books.length">
+    <li *ngIf="!books.length" i18n="text no books|Text displayed when no books are available@@BookListComponentNoBooks">
         No books available.
     </li>
 </ul>
