@@ -14,7 +14,7 @@
         </div>
         <div *ngIf="book.published">
             <h2>Published</h2>
-            {{ book.published | date: 'longDate' }}
+            {{ book.published | date: 'longDate':'+0200':'de' }}
         </div>
     </div>
     <h2>Description</h2>
